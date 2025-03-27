@@ -81,11 +81,199 @@
             const courtGroup = new THREE.Group();
 
             // Base
-            const baseGeometry = new THREE.BoxGeometry(20, 1, 10);
+            const baseGeometry = new THREE.BoxGeometry(15, 1, 10);
             const baseMaterial = new THREE.MeshStandardMaterial({ color: 0xdcdcdc });
             const base = new THREE.Mesh(baseGeometry, baseMaterial);
             base.position.set(0, -0.5, 0.5);
             scene.add(base);
+
+            // Main Build
+            const buildGeometry = new THREE.BoxGeometry(15, 15, 4);
+            const buildMaterial = new THREE.MeshStandardMaterial({ color: 0xdcdcdc });
+            const build = new THREE.Mesh(buildGeometry, buildMaterial);
+            build.position.set(0, 2, -1.5);
+            scene.add(build);
+
+            // Main Long
+            const longGeometry = new THREE.BoxGeometry(50, 12, 20);
+            const longMaterial = new THREE.MeshStandardMaterial({ color: 0xdcdcdc });
+            const long = new THREE.Mesh(longGeometry, longMaterial);
+            long.position.set(0, 2, -10.5);
+            scene.add(long);
+
+
+
+
+
+            const windowMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x1e90ff, // Bright blue window color
+                transparent: true, 
+                opacity: 0.7,  // Glass-like transparency
+                roughness: 0.1, // Slight reflection
+                metalness: 0.8  // Glass shine effect
+            });
+            
+            const windowWidth = 1;   // Width of each window
+            const windowHeight = 2;  // Height of each window
+            const windowDepth = 0.1; // Very thin depth to simulate glass
+            const windowSpacing = 3; // Space between each window
+            const numWindows = 5;    // Number of windows per row
+            
+            for (let i = 0; i < numWindows; i++) {
+                const windowGeometry = new THREE.BoxGeometry(windowWidth, windowHeight, windowDepth);
+                const windowMesh = new THREE.Mesh(windowGeometry, windowMaterial);
+            
+                // Adjust window position along the front wall
+                const xPosition = -7 + i * windowSpacing; // Moves windows left to right
+                windowMesh.position.set(xPosition-14, 3, -0.25); // Adjust Y for height, Z for depth
+            
+                scene.add(windowMesh);
+            }
+
+
+            const windowMaterial2 = new THREE.MeshStandardMaterial({ 
+                color: 0x1e90ff, // Bright blue window color
+                transparent: true, 
+                opacity: 0.7,  // Glass-like transparency
+                roughness: 0.1, // Slight reflection
+                metalness: 0.8  // Glass shine effect
+            });
+            
+            const windowWidth2 = 1;   // Width of each window
+            const windowHeight2 = 2;  // Height of each window
+            const windowDepth2 = 0.1; // Very thin depth to simulate glass
+            const windowSpacing2 = 3; // Space between each window
+            const numWindows2 = 5;    // Number of windows per row
+            
+            for (let i = 0; i < numWindows2; i++) {
+                const windowGeometry2 = new THREE.BoxGeometry(windowWidth2, windowHeight2, windowDepth2);
+                const windowMesh = new THREE.Mesh(windowGeometry2, windowMaterial2);
+            
+                // Adjust window position along the front wall
+                const xPosition = -7 + i * windowSpacing; // Moves windows left to right
+                windowMesh.position.set(xPosition+16, 3, -0.25); // Adjust Y for height, Z for depth
+            
+                scene.add(windowMesh);
+            }
+
+
+            const windowMaterial3 = new THREE.MeshStandardMaterial({ 
+                color: 0x1e90ff, // Bright blue window color
+                transparent: true, 
+                opacity: 0.7,  // Glass-like transparency
+                roughness: 0.1, // Slight reflection
+                metalness: 0.8  // Glass shine effect
+            });
+            
+            const windowWidth3 = 2.5;   // Width of each window
+            const windowHeight3 = 3;  // Height of each window
+            const windowDepth3 = 0.1; // Very thin depth to simulate glass
+            const windowSpacing3 = 3; // Space between each window
+            const numWindows3 = 1;    // Number of windows per row
+            
+            for (let i = 0; i < numWindows3; i++) {
+                const windowGeometry3 = new THREE.BoxGeometry(windowWidth3, windowHeight3, windowDepth3);
+                const windowMesh = new THREE.Mesh(windowGeometry3, windowMaterial3);
+            
+                // Adjust window position along the front wall
+                const xPosition = -7 + i * windowSpacing; // Moves windows left to right
+                windowMesh.position.set(xPosition+7, 4, 0.5); // Adjust Y for height, Z for depth
+            
+                scene.add(windowMesh);
+            }
+
+
+
+            const blackMaterial3 = new THREE.MeshStandardMaterial({ 
+                color: 0x000000, // Bright blue window color
+
+
+                
+            });
+            
+            const blackWidth3 = 2.0;   // Width of each window
+            const blackHeight3 = 2.5;  // Height of each window
+            const blackDepth3 = 0.1; // Very thin depth to simulate glass
+            const blackSpacing3 = 3; // Space between each window
+            const numblack3 = 1;    // Number of windows per row
+            
+            for (let i = 0; i < numblack3; i++) {
+                const blackGeometry3 = new THREE.BoxGeometry(blackWidth3, blackHeight3, blackDepth3);
+                const windowMesh = new THREE.Mesh(blackGeometry3, blackMaterial3);
+            
+                // Adjust window position along the front wall
+                const xPosition = -7 + i * blackSpacing3; // Moves windows left to right
+                windowMesh.position.set(xPosition+7, 1, 0.5); // Adjust Y for height, Z for depth
+
+
+                windowMesh.visible = true; // 🔹 Hide windows initially
+                scene.add(windowMesh);
+
+            }
+            
+
+
+// Roof (Triangular Prism with a Square Base)
+const topGeometry = new THREE.BufferGeometry();
+
+// Define the vertices (positions of each corner)
+// This makes a prism with a square base and a triangular top
+const vertices = new Float32Array([
+    // Base square (bottom face)
+    -7.5, 0, -2,   // 0 - Bottom-left
+     7.5, 0, -2,   // 1 - Bottom-right
+     7.5, 0,  2,   // 2 - Top-right
+    -7.5, 0,  2,   // 3 - Top-left
+
+    // Top Triangle (Front and Back Peaks)
+     0, 8, -2,   // 4 - Peak of front triangle
+     0, 8,  2    // 5 - Peak of back triangle
+]);
+
+// Define the faces (indexing vertices to create triangles)
+const indices = [
+    // Bottom face (square)
+    0, 1, 2,
+    0, 2, 3,
+
+    // Front triangular face
+    0, 1, 4,
+
+    // Back triangular face
+    3, 2, 5,
+
+    // Left slanted face
+    0, 3, 5,
+    0, 5, 4,
+
+    // Right slanted face
+    1, 2, 5,
+    1, 5, 4
+];
+
+topGeometry.setIndex(indices);
+topGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+topGeometry.computeVertexNormals(); // To ensure proper lighting
+
+const topMaterial = new THREE.MeshStandardMaterial({ color: 0xd3d3d3 }); // Light gray roof
+const top = new THREE.Mesh(topGeometry, topMaterial);
+top.position.set(0, 9, 3.4); // Adjusted position to sit correctly on the building
+scene.add(top);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // Ground
             const groundGeometry = new THREE.BoxGeometry(100, 1, 100);
@@ -96,7 +284,7 @@
 
             // Columns - Add more for realism
             for (let i = -7; i <= 7; i += 14) {
-                const columnGeometry = new THREE.CylinderGeometry(0.3, 0.3, 5, 32);
+                const columnGeometry = new THREE.CylinderGeometry(0.3, 0.3, 14, 32);
                 const columnMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
                 const column = new THREE.Mesh(columnGeometry, columnMaterial);
                 column.position.set(i, 2, 3);
@@ -105,7 +293,7 @@
 
             // Columns Back - Add more for realism
             for (let i = -7; i <= 7; i += 2) {
-                const columnGeometry = new THREE.CylinderGeometry(0.3, 0.3, 5, 32);
+                const columnGeometry = new THREE.CylinderGeometry(0.3, 0.3, 14, 32);
                 const columnMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
                 const column = new THREE.Mesh(columnGeometry, columnMaterial);
                 column.position.set(i, 2, 5);
@@ -116,7 +304,7 @@
             const roofGeometry = new THREE.BoxGeometry(15, 1, 5);
             const roofMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
             const roof = new THREE.Mesh(roofGeometry, roofMaterial);
-            roof.position.set(0, 4.5, 3);
+            roof.position.set(0, 9, 3);
             courtGroup.add(roof);
 
             // Doors - Modify for more detailed doors or add additional sets
@@ -126,8 +314,8 @@
                 new THREE.Mesh(doorGeometry, doorMaterial),
                 new THREE.Mesh(doorGeometry, doorMaterial)
             ];
-            doors[0].position.set(-0.5, 1, 2);
-            doors[1].position.set(0.5, 1, 2);
+            doors[0].position.set(-0.5, 1, 0.5);
+            doors[1].position.set(0.5, 1, 0.5);
             courtGroup.add(doors[0], doors[1]);
 
             // Optional: Add more architectural features here like windows, side buildings, etc.
@@ -135,12 +323,14 @@
 
             scene.add(courtGroup);
         }
-
+                
         function createPerson() {
+
+
             const personGeometry = new THREE.BoxGeometry(0.5, 1.5, 0.5);
             const personMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff });
             person = new THREE.Mesh(personGeometry, personMaterial);
-            person.position.set(0, 0.75, -5);
+            person.position.set(0, 0.75, -7);
             scene.add(person);
 
             walkToCourt();
@@ -158,15 +348,21 @@
                 }
             }
             step();
+
+
+          
         }
 
         function openDoors() {
             if (doorOpened) return;
             doorOpened = true;
+            
+
 
             let openProgress = 0;
             function animateDoors() {
                 if (openProgress < 1) {
+                    
                     doors[0].position.x -= 0.02;
                     doors[1].position.x += 0.02;
                     openProgress += 0.02;
@@ -174,6 +370,8 @@
                 }
             }
             animateDoors();
+
+            
         }
 
         function animate() {
