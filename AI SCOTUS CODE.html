@@ -49,6 +49,7 @@
  // Clouds
  createClouds();
  createClouds2();
+ createClouds3();
 
 
  function createClouds() {
@@ -56,7 +57,7 @@
     const cloudGeometry = new THREE.SphereGeometry(5, 32, 32);
     const cloudMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, opacity: 0.5, transparent: true });
     const cloud = new THREE.Mesh(cloudGeometry, cloudMaterial);
-    cloud.position.set(50, 20, -50);
+    cloud.position.set(75, 20, -60);
     cloud.scale.set(3, 1, 3);
     scene.add(cloud);
 }
@@ -66,10 +67,21 @@ function createClouds2() {
     const cloudGeometry = new THREE.SphereGeometry(5, 32, 32);
     const cloudMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, opacity: 0.5, transparent: true });
     const cloud2 = new THREE.Mesh(cloudGeometry, cloudMaterial);
-    cloud2.position.set(-50, 40, -50);
+    cloud2.position.set(-85, 40, -50);
     cloud2.scale.set(3, 1, 3);
     scene.add(cloud2);
 }
+
+function createClouds3() {
+    // Create clouds in the background
+    const cloudGeometry = new THREE.SphereGeometry(5, 32, 32);
+    const cloudMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, opacity: 0.5, transparent: true });
+    const cloud3 = new THREE.Mesh(cloudGeometry, cloudMaterial);
+    cloud3.position.set(5, 60, -75);
+    cloud3.scale.set(3, 1.5, 3);
+    scene.add(cloud3);
+}
+
 
 
 
@@ -612,7 +624,7 @@ createTree(38, -0.94, -5);
 
 
 // Doors - Modify for more detailed doors or add additional sets
-const doorGeometry = new THREE.BoxGeometry(1, 2.5, 0.1);
+const doorGeometry = new THREE.BoxGeometry(1.2, 2.8, 0.1);
 const doorMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
 doors = [
     new THREE.Mesh(doorGeometry, doorMaterial),
@@ -622,8 +634,7 @@ doors[0].position.set(-0.5, 1, 0.5);
 doors[1].position.set(0.5, 1, 0.5);
 courtGroup.add(doors[0], doors[1]);
 
-// Optional: Add more architectural features here like windows, side buildings, etc.
-// Example: create a window or side wall by creating a new geometry and placing it appropriately.
+
 
 scene.add(courtGroup);
 }
@@ -713,18 +724,172 @@ function animateDoors() {
         }
 
 
+
+
+        function transitionToNewPage() {
+            // Create a transition overlay with a space galaxy background
+            const overlay = document.createElement('div');
+            overlay.id = 'transition-overlay';
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = '#000';  // Space black background
+            overlay.style.zIndex = '9999';
+            overlay.style.overflow = 'hidden';
+            overlay.style.transformStyle = 'preserve-3d';
+            overlay.style.transition = 'transform 2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1.5s ease-out';
+            overlay.style.opacity = '0';
+        
+            // Add a vibrant space nebula background with glowing and colorful effects
+            const starField = document.createElement('div');
+            starField.style.position = 'absolute';
+            starField.style.top = '0';
+            starField.style.left = '0';
+            starField.style.width = '100%';
+            starField.style.height = '100%';
+            starField.style.background = 'url("https://cdn.pixabay.com/photo/2015/10/13/22/25/space-985414_960_720.jpg") center center no-repeat';
+            starField.style.backgroundSize = 'cover';
+            starField.style.filter = 'brightness(0.6) blur(15px)';  // Enhance the nebula with a brighter effect
+            overlay.appendChild(starField);
+        
+            // Append the overlay to the body
+            document.body.appendChild(overlay);
+        
+            // Add a glowing aura around the transition (Supernova-like explosion effect)
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.top = '50%';
+            glow.style.left = '50%';
+            glow.style.width = '300px';
+            glow.style.height = '300px';
+            glow.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            glow.style.borderRadius = '50%';
+            glow.style.boxShadow = '0 0 50px rgba(255, 255, 255, 0.9), 0 0 100px rgba(255, 255, 0, 0.8), 0 0 150px rgba(255, 69, 0, 0.8), 0 0 250px rgba(255, 165, 0, 1)';
+            glow.style.transform = 'translate(-50%, -50%) scale(1)';
+            glow.style.transition = 'transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1.5s ease-out';
+            overlay.appendChild(glow);
+        
+            // Add the stars glitter effect (extra stars for better ambiance)
+            const starCount = 1200;  // More stars to make it feel more like a starry nebula
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.width = `${Math.random() * 5 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.backgroundColor = 'white';
+                star.style.borderRadius = '50%';
+                star.style.animation = `glitterEffect ${Math.random() * 2 + 2}s ease-in-out infinite`;
+                overlay.appendChild(star);
+            }
+        
+            // Add glowing, space-like particle animation for supernova effect
+            const styleSheet = document.createElement("style");
+            styleSheet.innerText = `
+                @keyframes glitterEffect {
+                    0% { opacity: 0.7; transform: scale(1); }
+                    50% { opacity: 1; transform: scale(1.5); }
+                    100% { opacity: 0.7; transform: scale(1); }
+                }
+        
+                @keyframes debrisAnim {
+                    0% { opacity: 1; transform: translate3d(0, 0, 0); }
+                    100% { opacity: 0; transform: translate3d(${Math.random() * 1200 - 600}px, ${Math.random() * 1200 - 600}px, 200px); }
+                }
+        
+                @keyframes shockwaveAnim {
+                    0% { transform: scale(1); opacity: 0.8; }
+                    100% { transform: scale(10); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        
+            // Trigger the explosion after a small delay to initiate the 3D zoom and explosion effect
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                glow.style.transform = 'translate(-50%, -50%) scale(8)';  // Supernova effect expansion
+                overlay.style.transform = 'scale(3)'; // 3D zoom-in effect for cosmic explosion
+                overlay.style.transition = 'transform 2.5s ease-in-out, opacity 2.5s ease-out';
+        
+                // Add shockwave effect after explosion starts
+                const shockwave = document.createElement('div');
+                shockwave.style.position = 'absolute';
+                shockwave.style.top = '50%';
+                shockwave.style.left = '50%';
+                shockwave.style.width = '300px';
+                shockwave.style.height = '300px';
+                shockwave.style.borderRadius = '50%';
+                shockwave.style.backgroundColor = 'rgba(255, 165, 0, 0.6)';
+                shockwave.style.transform = 'translate(-50%, -50%)';
+                shockwave.style.animation = 'shockwaveAnim 2s ease-out';
+                overlay.appendChild(shockwave);
+        
+                // Add a more intense debris explosion with large fiery particles
+                let debrisCount = 300;  // Add more debris to make the explosion more impactful
+                for (let i = 0; i < debrisCount; i++) {
+                    let debris = document.createElement('div');
+                    debris.style.position = 'absolute';
+                    debris.style.top = `${Math.random() * 100}%`;
+                    debris.style.left = `${Math.random() * 100}%`;
+                    debris.style.width = `${Math.random() * 12 + 6}px`;
+                    debris.style.height = debris.style.width;
+                    debris.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;  // Fiery colors
+                    debris.style.borderRadius = '50%';
+                    debris.style.animation = `debrisAnim ${Math.random() * 4 + 3}s ease-out infinite`;
+                    overlay.appendChild(debris);
+                }
+        
+                // Add fiery smoke particles flying away from the explosion
+                let smokeCount = 100;
+                for (let i = 0; i < smokeCount; i++) {
+                    let smoke = document.createElement('div');
+                    smoke.style.position = 'absolute';
+                    smoke.style.top = `${Math.random() * 100}%`;
+                    smoke.style.left = `${Math.random() * 100}%`;
+                    smoke.style.width = `${Math.random() * 10 + 8}px`;
+                    smoke.style.height = `${Math.random() * 10 + 8}px`;
+                    smoke.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                    smoke.style.borderRadius = '50%';
+                    smoke.style.animation = `debrisAnim ${Math.random() * 3 + 2}s ease-out infinite`;
+                    overlay.appendChild(smoke);
+                }
+        
+            }, 10);  // Slight delay to allow space transition before the explosion
+        
+            // Transition to the new page after the explosion effect completes
+            setTimeout(() => {
+                window.location.href = '3dSupreme.html';  // Change to the new page
+            }, 2300);  // Matches the explosion duration and effect timing
+        }
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
         function animateWalking() {
             if (!isWalking) return;
-
+        
             // Add realistic walking bobbing and shaking to the camera's position
             let bobbingOffset = Math.sin(walkProgress * walkBobbingFrequency) * walkBobbingAmplitude;
-
+        
             if (walkDirection === 0) {
                 // Walking towards the stairs
                 if (walkProgress < 10) {
                     walkTowardsCourt(stepDistance); // Walk forward with natural motion
                     walkProgress += 0.03;
-                    
                 } else {
                     walkDirection = 1; // Switch to climbing stairs
                     walkProgress = 0;
@@ -733,7 +898,7 @@ function animateDoors() {
                 // Climbing stairs (realistic and slow)
                 const stepHeight = 0.4;
                 const stepDepth = 0.6;
-
+        
                 if (walkProgress < 6) {
                     // Slowly move up the stairs
                     camera.position.y += stepHeight / 12;  // Gradually climb up (very slow)
@@ -747,27 +912,32 @@ function animateDoors() {
             } else if (walkDirection === 2) {
                 // Entering the door and zooming into it slowly
                 if (walkProgress < 1) {
-                    camera.position.z -= 0.000001;  // Enter the door slowly
+                    camera.position.z -= 0.01;  // Enter the door slowly
                     camera.position.y -= 0.038;  // Slowly lower to the door height
-                    camera.position.x += 0.000001;  // Enter the door slowly
-
-
+                    camera.position.x += 0.00001;  // Enter the door slowly
+        
                     if (camera.fov > cameraZoomTarget) {
                         camera.fov -= zoomSpeed; // Slow zoom in towards the door
                     }
-
-                    
-                    
+        
                     walkProgress += 0.05;
                     camera.position.z -= 0.35;  // Enter the door slowly
                 } else {
                     isWalking = false; // Stop walking once inside
-                }
-            }
+                    if (walkProgress > 0.5) {
+                        transitionToNewPage(); // Call page transition after walking ends
+                        doorsOpened = true;  // Make sure the transition only happens once
+                    }
 
+                }
+
+            }
+        
             camera.updateProjectionMatrix(); // Update camera's field of view for zoom
         }
-
+        
+        
+        
         function animate() {
             animateWalking(); // Call walking animation
             renderer.render(scene, camera);
