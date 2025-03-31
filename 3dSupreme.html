@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Court Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Fullscreen layout and background animation */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #0a1623, #1a2838);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #e0f7ff;
+            font-family: 'Poppins', sans-serif;
+            animation: backgroundShift 12s ease infinite;
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .slide-container {
+            width: 88vw;
+            height: 88vh;
+            perspective: 1200px;
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 20, 0.9);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+            animation: containerFade 1.5s ease forwards;
+        }
+
+        @keyframes containerFade {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .slide {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: fadeInOut 1.8s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.92) contrast(1.1) saturate(1.3);
+            transition: transform 1.2s ease-in-out;
+            transform: scale(1.02);
+        }
+
+        .slide.fade-in {
+            display: block;
+            animation: slideIn 1.2s ease forwards;
+        }
+
+        .slide.fade-out {
+            display: block;
+            animation: slideOut 1.2s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: rotateY(40deg) scale(0.95); opacity: 0; }
+            to { transform: rotateY(0deg) scale(1); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: rotateY(0deg); opacity: 1; }
+            to { transform: rotateY(-40deg); opacity: 0; }
+        }
+
+        /* Neon glow effect for images */
+        .neon-effect {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.4);
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            0% { box-shadow: 0 0 25px rgba(0, 255, 255, 0.5), 0 0 50px rgba(0, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 50px rgba(0, 255, 255, 1), 0 0 100px rgba(0, 255, 255, 0.7); }
+        }
+
+        /* Text styling for readability */
+        h1, p {
+            text-align: center;
+            font-weight: 300;
+            font-size: 3rem;
+            color: #e0f7ff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 255, 255, 1); }
+            100% { text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 255, 255, 0.8); }
+        }
+
+        /* Centered slide captions */
+        .caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            text-align: center;
+            opacity: 0;
+            animation: captionAppear 2s ease forwards;
+        }
+
+        @keyframes captionAppear {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1 -->
+        <div class="slide fade-in" id="slide-1">
+            <img src="SCOTUS image/SCOTUS 1.png" alt="Slide 1 Image" class="neon-effect">
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" id="slide-2">
+            <img src="SCOTUS image/SCOTUS 2.png" alt="Slide 2 Image" class="neon-effect">
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide" id="slide-3">
+            <img src="SCOTUS image/SCOTUS 3.png" alt="Slide 3 Image" class="neon-effect">
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide-4">
+            <img src="SCOTUS image/SCOTUS 4.png" alt="Slide 4 Image" class="neon-effect">
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="slide-5">
+            <img src="SCOTUS image/SCOTUS 5.png" alt="Slide 5 Image" class="neon-effect">
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide" id="slide-6">
+            <img src="SCOTUS image/SCOTUS 6.png" alt="Slide 6 Image" class="neon-effect">
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide" id="slide-7">
+            <img src="SCOTUS image/SCOTUS 7.png" alt="Slide 7 Image" class="neon-effect">
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide" id="slide-8">
+            <img src="SCOTUS image/SCOTUS 8.png" alt="Slide 8 Image" class="neon-effect">
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('fade-in', 'fade-out');
+                if (i === index) {
+                    slide.classList.add('fade-in');
+                } else {
+                    slide.classList.add('fade-out');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Display initial slide
+        showSlide(currentSlide);
+
+        // Slide controls with keyboard and mouse
+        document.addEventListener('keydown', (event) => {
+            if (['ArrowRight', 'PageDown', ' ', 'Enter', 'End'].includes(event.key)) {
+                nextSlide();
+            } else if (['ArrowLeft', 'PageUp', 'Home'].includes(event.key)) {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Mouse click control
+        document.addEventListener('mouseup', (event) => {
+            if (event.button === 0) { // Left-click
+                nextSlide();
+            } else if (event.button === 2) { // Right-click
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Prevent right-click menu
+        document.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
