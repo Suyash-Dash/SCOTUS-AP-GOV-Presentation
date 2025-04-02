@@ -197,9 +197,9 @@
 
         // Slide controls with keyboard and mouse
         document.addEventListener('keydown', (event) => {
-            if (['ArrowRight', 'PageDown', ' ', 'Enter', 'End'].includes(event.key)) {
+            if (['ArrowRight', 'PageUp', ' ', 'Enter', 'End'].includes(event.key)) {
                 nextSlide();
-            } else if (['ArrowLeft', 'PageUp', 'Home'].includes(event.key)) {
+            } else if (['ArrowLeft', 'PageDown', 'Home'].includes(event.key)) {
                 currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
                 showSlide(currentSlide);
             }
